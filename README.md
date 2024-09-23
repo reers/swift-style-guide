@@ -5,7 +5,7 @@
 为了使 Swift 代码更加清晰，简洁，需要制定一份通用详细的代码规范。本规范基于 Swift 5.5 制定, 参考了其他组织公开的代码规范，并对他们进行了一定程度的修改。欢迎参与讨论，提出意见，共同建设。
 
 - [Apple Swift API Design Guidelines](https://www.swift.org/documentation/api-design-guidelines/#parameter-names)
-- [The Official raywenderlich.com Swift Style Guide](https://github.com/raywenderlich/swift-style-guide)
+- [The Official Kodeco(raywenderlich) Swift Style Guide](https://github.com/kodecocodes/swift-style-guide)
 - [Google Swift Style Guide](https://google.github.io/swift/) ([中文版](https://pages.swift.gg/google-swift-style-guide-in-chinese/))
 - [Airbnb Swift Style Guide](https://github.com/airbnb/swift)
 - [LinkedIn Swift Style Guide](https://github.com/linkedin/swift-style-guide#1-code-formatting)
@@ -14,25 +14,25 @@
 
 ```swift
 ✅ 建议使用
-🟡 不反对但也不推荐使用
+🟡不反对但也不推荐使用
 ❌ 禁止使用
 ```
 
 ## 代码格式
 
-##### 缩进使用 4 个空格而不是 tab  `强制`
+> ##### 缩进使用 4 个空格而不是 tab  `强制❗️`
 
-不要在工程里使用 Tab，使用空格来进行缩进。在 `Xcode > Preferences > Text Editing > Indentation` 将 Tab 和自动缩进都设置为 **4 **个空格，`Tab Key` 选项设为 `Indents in leading whitespace`
+不要在工程里使用 Tab，使用空格来进行缩进。在 `Xcode > Preferences > Text Editing > Indentation` 将 Tab 和自动缩进都设置为 **4** 个空格，`Tab Key` 选项设为 `Indents in leading whitespace`
 
-##### 单行最大字符数** 120 **`建议`
+> ##### 单行最大字符数 120 `建议🌵`
 
 过长的一行代码将会导致可读性问题，业界通常建议单行最大字符数为 80，但随着现在开发设备屏幕越来越大，以及苹果推荐的描述性命名风格，120 个字符更为合适。在 `Xcode > Preferences > Text Editing > Page guide at column:` 中将最大行长设置为 **120**，来使越界更容易被发现
 
-##### 函数实现最大行数 100 行 `强制`
+> ##### 函数实现最大行数 100 行 `强制❗️`
 
 一个函数实现的行数建议**不要超过 100 行**。如果行数太多，说明需要进行逻辑拆分了。
 
-##### 函数参数不宜过多  `建议`
+> ##### 函数参数不宜过多  `建议🌵`
 
 除 `init` 方法外, 函数的参数数量**不要大于 5 个**，超过之后应该封装为参数 model 或使用 builder 模式。
 
@@ -72,7 +72,7 @@ func showIndicator(
 )
 ```
 
-##### 控制语句最大嵌套层级  `强制`
+> ##### 控制语句最大嵌套层级  `强制❗️`
 
 控制语句的嵌套层级**不要超过 3 层**，否则将难以阅读和维护
 
@@ -85,9 +85,9 @@ if condition1 {
         for i in 0...10 {
             // depth = 3
             if condition4 {
-                // 🟡bad - depth = 4
+                // ❌ bad - depth = 4
                 if condition5 {
-                    // 🟡bad - depth = 5
+                    // ❌ bad - depth = 5
                 }
                 return;
             }
@@ -96,14 +96,14 @@ if condition1 {
 }
 ```
 
-##### 禁止使用分号  `强制`
+> ##### 禁止使用分号  `强制❗️`
 
 禁止使用分号(`;`), 无论是用于终止或者分割语句。换而言之，分号只可能出现在字符串字面量或者注释中。
 
 ```swift
 // ✅
 func printSum(_ a: Int, _ b: Int) {
-    let sum **=** a **+** b
+    let sum = a + b
     print(sum)
 }
 
@@ -117,7 +117,7 @@ func around<T>(_ closure: () throws -> T) rethrows -> T {
 ```swift
 // ❌
 func printSum(_ a: Int, _ b: Int) {
-    let sum **=** a **+** b;
+    let sum = a + b;
     print(sum);
 }
 
@@ -127,7 +127,7 @@ func around<T>(_ closure: () throws -> T) rethrows -> T {
 }
 ```
 
-##### 每行一个语句  `强制`
+> ##### 每行一个语句  `强制❗️`
 
 - 每行**最多**一个语句，每个语句后换行，除非该行结尾包含代码块, 且代码块中只有 0 或 1 条语句。
 - 代码块中若只有一条语句, 则允许语句和 `{}` 放在同一行, 其他所有情况需要换行
@@ -135,21 +135,21 @@ func around<T>(_ closure: () throws -> T) rethrows -> T {
 
 ```swift
 // ✅
-guard let value **=** value else { return 0 }
+guard let value = value else { return 0 }
 
-defer { file**.**close() }
+defer { file.close() }
 
 switch someEnum {
-case **.**first: return 5
-case **.**second: return 10
-case **.**third: return 20
+case .first: return 5
+case .second: return 10
+case .third: return 20
 }
 
-let squares **=** numbers**.**map { $0 ***** $0 }
+let squares = numbers.map { $0 * $0 }
 
 var someProperty: Int {
-    get { return otherObject**.**property }
-    set { otherObject**.**property **=** newValue }
+    get { return otherObject.property }
+    set { otherObject.property = newValue }
 }
 
 var result: Bool {
@@ -159,15 +159,15 @@ var result: Bool {
     set {}
 }
 
-var someProperty: Int { return otherObject**.**somethingElse() }
+var someProperty: Int { return otherObject.somethingElse() }
 
 required init?(coder aDecoder: NSCoder) { fatalError("no coder") }
 ```
 
 ```swift
 // ❌
-var a **=** 5, b **=** 10
-guard let value **=** value else { completion(); return 0 }
+var a = 5, b = 10
+guard let value = value else { completion(); return 0 }
 
 var result: Bool {
     get { return read { $0 } } // 单行有多个大括号嵌套时可读性变差, 不推荐
@@ -175,9 +175,9 @@ var result: Bool {
 }
 ```
 
-##### 闭包
+> ##### 闭包
 
-- 增加闭包参数标签  `建议`
+- 增加闭包参数标签  `建议🌵`
 
 在声明闭包时, 为闭包的每个参数增加标签会使其更加易读. 但如果是比较明确的场景, 也可以不增加参数标签.
 
@@ -189,20 +189,26 @@ var isAdult: (_ age: Int) -> Bool
 var logoImageDownloadCompletion: (UIImage?) -> Void
 ```
 
-- 适当省略编译器可推断的内容  `建议`
+- 适当省略编译器可推断的内容  `建议🌵`
 
 闭包表达式中的参数类型, 是否抛异常, 返回值信息, 如果通过阅读上下文可以明确知晓, 又或是众所周知的, 显而易见的场景, 建议省略它们. 但如果不能轻易明确, 需要跳转或查看注释方能确认, 则建议不要省略
 
 ```swift
 // ✅
 let closure: (String, Int) throws -> Bool = {
-    [weak obj, unowned obj2] (string~~: String~~, int~~: Int~~) ~~throws -> Bool~~ in
+    [weak obj, unowned obj2] string, int in
+    // ...
+    return true
+}
+// 🟡
+let closure: (String, Int) throws -> Bool = {
+    [weak obj, unowned obj2] (string: String, int: Int) throws -> Bool in
     // ...
     return true
 }
 ```
 
-- 参数表的括号  `强制`
+- 参数表的括号  `强制❗️`
   - 当参数表的后面写有 `throws` 或 `->`, 那么闭包参数表需要加上小括号
   - 当每个参数标明了具体类型, 需要加上小括号 (此时不加括号会报错)
   - 其他场景都不加小括号
@@ -251,7 +257,7 @@ let closure: (String, Int) throws -> Bool = {
 }
 ```
 
-- 闭包换行 `强制`
+- 闭包换行 `强制❗️`
 
 内容较多需要换行时, 弱引用, 闭包参数, `throws`, 返回值, `in` 关键字, 全都放在新的一行, 左边缩进一个单位, 然而此时新行与下方闭包实现有着同样的缩进, 为了区分开, 还要再空一行来书写闭包实现, 以便阅读.
 
@@ -282,22 +288,26 @@ let closure: (String, Int) throws -> Bool = { string, int
 }
 ```
 
-##### 函数声明和定义  `强制`
+> ##### 函数声明和定义  `强制❗️`
 
 先说基本的换行逻辑, Swift 函数的情况比较复杂, 为了讲清楚这个问题, 我们将其分为五个区段
 
 ```swift
-_attributes__ __modifiers_ func _name_<_generic arguments_>( _formal arguments__ _) throws -> _result__ _where _generic constraints _{
+①attributes 
+②modifiers func name<generic arguments>(
+③formal arguments
+④) throws -> result 
+⑤where generic constraints {
 
 // 例:
 @objc
 @available(iOS 10.0, macOS 10.12, *)
 @discardableResult
-public func index**<**Elements: Collection, Element**>**(
+public func index<Elements: Collection, Element>(
     of element: Element,
     in collection: Elements
-) throws **->** Elements**.**Index? 
-where Elements**.**Element **==** Element, Element: Equatable {
+) throws -> Elements.Index? 
+where Elements.Element == Element, Element: Equatable {
     // ...
 }
 ```
@@ -333,32 +343,32 @@ static func blend(
     // ...                        
 }
 
-public func index**<**Element**>**(of element: Element) throws **->** Elements**.**Index? 
+public func index<Element>(of element: Element) throws -> Elements.Index? 
 where Element: Equatable {
     // ...
 }
 
-public func index**<**Element**>**(
+public func index<Element>(
     of element: Element
-) throws **->** Elements**.**Index? where Element: Equatable {
+) throws -> Elements.Index? where Element: Equatable {
     // ...
 }
 
 @available(iOS 10.0, macOS 10.12, *)
 @discardableResult
-public func index**<**Elements: Collection, Element**>**(
+public func index<Elements: Collection, Element>(
     of element: Element,
     in collection: Elements
-) throws **->** Elements**.**Index? 
-where Elements**.**Element **==** Element, Element: Equatable {
+) throws -> Elements.Index? 
+where Elements.Element == Element, Element: Equatable {
     // ...
 }
 ```
 
 ```swift
 // ❌
-public func index**<T**, S**>**(of element: T,  // AVOID.
-                        in collection: S) **->** Int
+public func index<T, S>(of element: T,  // AVOID.
+                        in collection: S) -> Int
     where T: Equatable {
     doSomething()
 }
@@ -374,13 +384,13 @@ func foo(bar: Int)
     // ...
 }
 
-public func index**<**Element**>**(of element: Element) 
-**->** Elements**.**Index? where Element: Equatable {
+public func index<Element>(of element: Element) 
+-> Elements.Index? where Element: Equatable {
     // ...
 }
 
-public func index**<**Element**>**(of element: Element) 
-throws **->** Elements**.**Index? 
+public func index<Element>(of element: Element) 
+throws -> Elements.Index? 
 where Element: Equatable {
     // ...
 }
@@ -390,28 +400,28 @@ where Element: Equatable {
 
 ```swift
 // ✅
-public func performanceTrackingIndex**<**Elements: Collection, Element**>**(
+public func performanceTrackingIndex<Elements: Collection, Element>(
     of element: Element,
     in collection: Elements
-) **->** (
-    Element**.**Index?,
-    PerformanceTrackingIndexStatistics**.**Timings,
-    PerformanceTrackingIndexStatistics**.**SpaceUsed
+) -> (
+    Element.Index?,
+    PerformanceTrackingIndexStatistics.Timings,
+    PerformanceTrackingIndexStatistics.SpaceUsed
 ) {
     // ...
 }
 
 
 typealias PerformanceTrackingIndexResult = (
-    Element**.**Index?,
-    PerformanceTrackingIndexStatistics**.**Timings,
-    PerformanceTrackingIndexStatistics**.**SpaceUsed
+    Element.Index?,
+    PerformanceTrackingIndexStatistics.Timings,
+    PerformanceTrackingIndexStatistics.SpaceUsed
 )
 
-public func performanceTrackingIndex**<**Elements: Collection, Element**>**(
+public func performanceTrackingIndex<Elements: Collection, Element>(
     of element: Element,
     in collection: Elements
-) **->** PerformanceTrackingIndexResult {
+) -> PerformanceTrackingIndexResult {
     // ...
 }
 ```
@@ -441,7 +451,7 @@ let test = Test(title: "", style: 2, handler: { s in
 }, name: "")
 ```
 
-##### 函数调用  `强制`
+> ##### 函数调用  `强制❗️`
 
 - 函数调用如果需要换行, 则每个实参单独一行, 并在原始行的基础上缩进一个单位
 
@@ -491,11 +501,11 @@ myObject.doFoo(with: arg1,
 
 ```swift
 // ✅
-let index **=** index(
+let index = index(
     of: veryLongElementVariableName,
     in: aCollectionOfElementsThatAlsoHappensToHaveALongName)
 
-let index **=** index(
+let index = index(
     of: veryLongElementVariableName,
     in: aCollectionOfElementsThatAlsoHappensToHaveALongName
 )
@@ -503,166 +513,151 @@ let index **=** index(
 
 - 当函数有尾随闭包时:
   - 可以采用尾随闭包的写法. 如果是多尾随闭包, 首个闭包没有标签, 后面的其他闭包标签跟在上一个闭包的后面. 此方式适用于函数**非闭包**参数较少, 第一行比较短, 不会超字符数限制的场景.
+    ```swift
+    // ✅
+    UIView.animate(withDuration: 0.3) {
+    // ...
+    }
+        
+    UIView.animate(
+        withDuration: 0.3,
+        arg1: 2234234,
+        arg2: "abc"
+    ) {
+    // ...
+    }
+        
+    // 多尾随闭包场景: 首个闭包没有标签, 后面的其他闭包标签跟在上一个闭包的后面.
+    // 此方式适用于函数前面的**非闭包**参数较少, 一行可以写完的场景.
+    UIView.animate(withDuration: 0.5) {
+    // ...
+    } completion: { finished in
+    // ...
+    }
+    ```
 
-  ```swift
-  ```
+   - 也可以不使用尾随闭包的写法, 按照函数调用时参数换行的基本规则即可, 每个闭包的右大括号`}`与该参数标签左对齐. 此方式适用于各种场景.
+    ```swift
+    // ✅
+    UIView.animate(
+        withDuration: 0.4,
+        animations: {
+            // ...
+        })
+        
+    UIView.animate(
+        withDuration: 0.5,
+        animations: {
+            // ...
+        },
+        completion: { finished in
+            // ...
+        }
+    )
+    ```
 
-// ✅
-UIView.animate(withDuration: 0.3) {
-// ...
-}
-
-UIView.animate(
-withDuration: 0.3,
-arg1: 2234234,
-arg2: "abc"
-) {
-// ...
-}
-
-// 多尾随闭包场景: 首个闭包没有标签, 后面的其他闭包标签跟在上一个闭包的后面.
-// 此方式适用于函数前面的**非闭包**参数较少, 一行可以写完的场景.
-UIView.animate(withDuration: 0.5) {
-// ...
-} completion: { finished in
-// ...
-}
-
-```
-	- 也可以不使用尾随闭包的写法, 按照函数调用时参数换行的基本规则即可, 每个闭包的右大括号`}`与该参数标签左对齐. 此方式适用于各种场景.
-	```swift
-// ✅
-UIView.animate(
-    withDuration: 0.4,
-    animations: {
-        // ...
+    ```swift
+    // ❌ 没有采用尾随闭包, `})` 写在一起不美观
+    UIView.animate(withDuration: 0.3, animations: {
+    // ...
     })
-
-UIView.animate(
-    withDuration: 0.5,
-    animations: {
-        // ...
-    },
-    completion: { finished in
+    
+    // ❌ 不要在有多个尾随闭包的情况下采用单尾随闭包的写法
+    UIView.animate(withDuration: 0.25, animations: {
+    // ...
+    }) { finished in
+    // ...
+    }
+    
+    // ❌ 没有采用多尾随闭包的写法, 且换行逻辑不对
+    UIView.animate(withDuration: 0.5, animations: {
+    // ...
+    }, completion: { finished in
+    // ...
+    })
+    ```
+	- 当函数除尾随闭包外没有其他参数, 必须采用尾随闭包的写法, 且要省略`()`
+    ```swift
+    func getBubble(completion: (String) -> Void) {
         // ...
     }
-)
-```
+    // ✅
+    getBubble { bubble in
+        // ...
+    }
+    
+    // ❌ 
+    getBubble() { bubble in
+        // ...
+    }
+    // ❌ 
+    getBubble(completion: { bubble in
+        // ...
+    })
+    ```
+    - 如果函数前面的参数换行了, 那么尾随闭包中的参数就不需要换行了
 
-```
-```swift
-```
-
-// ❌ 没有采用尾随闭包, `})` 写在一起不美观
-UIView.animate(withDuration: 0.3, animations: {
-// ...
-})
-
-// ❌ 不要在有多个尾随闭包的情况下采用单尾随闭包的写法
-UIView.animate(withDuration: 0.25, animations: {
-// ...
-}) { finished in
-// ...
-}
-
-// ❌ 没有采用多尾随闭包的写法, 且换行逻辑不对
-UIView.animate(withDuration: 0.5, animations: {
-// ...
-}, completion: { finished in
-// ...
-})
-
-```
-	- 当函数除尾随闭包外没有其他参数, 必须采用尾随闭包的写法, 且要省略`()`
+    ```swift
+    // ✅ 函数前面的参数换行了, 尾随闭包中参数就不要换行了
+    let src = UITableViewDiffableDataSource<Section, Item>(
+        tableView: tableView,
+        config: SomeConfig
+    ) { [weak self] (tableView, indexPath, item) -> UITableViewCell? in
+        guard let self = self else { return nil }
+        let cell = ...
+        return cell
+    }
+    ```
+    
 	```swift
-func getBubble(completion: (String) -> Void) {
-    // ...
-}
-// ✅
-getBubble { bubble in
-    // ...
-}
+    // ❌ 闭包整体左侧没有缩进, 使得闭包参数看起来像是函数参数,对读者产生干扰
+    let src = UITableViewDiffableDataSource<Section, Item>(tableView: tableView) { [weak self] (
+        tableView: UITableView,
+        indexPath: IndexPath,
+        item: Item
+    ) -> UITableViewCell? in
+        guard let self = self else { return nil }
+        let cell = ...
+        return cell
+    }
+    // ❌ 函数前面的参数换行了, 尾随闭包中的参数也换行了, 使得闭包参数看起来像是函数参数
+    // 容易误解
+    let src = UITableViewDiffableDataSource<Section, Item>(
+        tableView: tableView,
+        config: SomeConfig
+    ) { [weak self] (
+        tableView: UITableView,
+        indexPath: IndexPath,
+        item: Item
+    ) -> UITableViewCell? in
+        guard let self = self else { return nil }
+        let cell = ...
+        return cell
+    }
+    ```
+    - 如果以上几种格式都不能很好的呈现, 建议将闭包提取为变量传递给函数
+    ```swift
+    // ✅ 不换行的形式
+    let provider = { (tableView: UITableView, indexPath: IndexPath, item: Item) -> UITableViewCell? in
+        let cell = ...
+        return cell
+    }
+    let src = UITableViewDiffableDataSource<Section, Item>(tableView: tableView, cellProvider: provider)
+    
+    // ✅ 换行的形式
+    let provider = { [weak self] (
+        tableView: UITableView,
+        indexPath: IndexPath,
+        item: Item
+    ) -> UITableViewCell? in
+        guard let self = self else { return nil }
+        let cell = ...
+        return cell
+    }
+    let src = UITableViewDiffableDataSource<Section, Item>(tableView: tableView, cellProvider: provider)
+    ```
 
-// ❌ 
-getBubble() { bubble in
-    // ...
-}
-// ❌ 
-getBubble(completion: { bubble in
-    // ...
-})
-```
-
-```
-- 如果函数前面的参数换行了, 那么尾随闭包中的参数就不需要换行了
-```swift
-```
-
-// ✅ 函数前面的参数换行了, 尾随闭包中参数就不要换行了
-let src = UITableViewDiffableDataSource<Section, Item>(
-tableView: tableView,
-config: SomeConfig
-) { [weak self] (tableView, indexPath, item) -> UITableViewCell? in
-guard let self = self else { return nil }
-let cell = ...
-return cell
-}
-
-```
-	```swift
-// ❌ 闭包整体左侧没有缩进, 使得闭包参数看起来像是函数参数,对读者产生干扰
-let src = UITableViewDiffableDataSource<Section, Item>(tableView: tableView) { [weak self] (
-    tableView: UITableView,
-    indexPath: IndexPath,
-    item: Item
-) -> UITableViewCell? in
-    guard let self = self else { return nil }
-    let cell = ...
-    return cell
-}
-// ❌ 函数前面的参数换行了, 尾随闭包中的参数也换行了, 使得闭包参数看起来像是函数参数
-// 容易误解
-let src = UITableViewDiffableDataSource<Section, Item>(
-    tableView: tableView,
-    config: SomeConfig
-) { [weak self] (
-    tableView: UITableView,
-    indexPath: IndexPath,
-    item: Item
-) -> UITableViewCell? in
-    guard let self = self else { return nil }
-    let cell = ...
-    return cell
-}
-```
-
-```
-- 如果以上几种格式都不能很好的呈现, 建议将闭包提取为变量传递给函数
-```swift
-```
-
-// ✅ 不换行的形式
-let provider = { (tableView: UITableView, indexPath: IndexPath, item: Item) -> UITableViewCell? in
-let cell = ...
-return cell
-}
-let src = UITableViewDiffableDataSource<Section, Item>(tableView: tableView, cellProvider: provider)
-
-// ✅ 换行的形式
-let provider = { [weak self] (
-tableView: UITableView,
-indexPath: IndexPath,
-item: Item
-) -> UITableViewCell? in
-guard let self = self else { return nil }
-let cell = ...
-return cell
-}
-let src = UITableViewDiffableDataSource<Section, Item>(tableView: tableView, cellProvider: provider)
-
-```
-
-##### 类型和拓展声明  `强制`
+> ##### 类型和拓展声明  `强制❗️`
 
 - 不推荐多实现协议的情况下换行. 如果单行写不下建议使用`extension`的方式书写. (下面例子适用于 `class`、`struct`、`enum`、`extension` 和 `protocol`)
 
@@ -702,7 +697,7 @@ extension MyContainer: SomeProtocol where BaseCollection: Collection {
 ```
 
 ```swift
-// ⚠️
+// 🟡
 class MyContainer<Element>:
     MyContainerSuperclass,
     MyContainerProtocol,
@@ -712,7 +707,7 @@ class MyContainer<Element>:
     // ...
 }
 
-// ⚠️
+// 🟡
 class MyContainer<BaseCollection>:
     MyContainerSuperclass,
     MyContainerProtocol,
@@ -745,19 +740,20 @@ class MyContainer<Element>
 }
 ```
 
-##### 控制流语句  `强制`
+> ##### 控制流语句  `强制❗️`
 
 - 当控制流语句（主要是 `if` 和 `guard`）需要换行时, 如果有 `&&` `||` 应该放在行首，这样可以更直观的理解他们之间的逻辑关系. 另外，必要时可以用括号或者将 condition 抽成变量来提高可读性.
 - 换行后每一行的 condition 与上一行的 condition 左对齐. 这里需要注意的是, 如果是 `if let` 或者 `guard let`, 每个 condition 换行后 Xcode 会默认对齐的, 但如果是 `&&` `||` 组合的 condition 换行后, Xcode 默认是不对齐的, 这种格式也是可接受的, 毕竟这种场景很多, 如果每次都要手动调整, 是让人难以接受的.
 
 ```swift
-// ✅ 
+// 🟡
 // Xcode默认换行逻辑是不对齐的, 也可以接受, 但最好手动调整为对齐
 if aLongcondition1
     && condition2
     && (condition3 || condition4) {
     return false
 }
+// ✅
 // 以下格式为手动调整缩进, 也是比较理想的样式
 if aLongcondition1
    && condition2
@@ -776,8 +772,9 @@ if let value = someOptionalValueFunc(),
     doSomething()
 }
 
-guard let value = aValueReturnedByAVeryLongOptionalThing(),
-      let value2 = aDifferentValueReturnedByAVeryLongOptionalThing()
+guard 
+    let value = aValueReturnedByAVeryLongOptionalThing(),
+    let value2 = aDifferentValueReturnedByAVeryLongOptionalThing()
 else {
     doSomething()
 }
@@ -792,7 +789,7 @@ if condition1 &&
 }
 ```
 
-- `if` 和 `guard` 不允许单独一行
+- `if` 不允许单独一行
 
 ```swift
 // ❌
@@ -802,17 +799,10 @@ if
     let value3 = aOptionalValue {
     doSomething()
 }
-
-guard
-    let value = someOptionalValueFunc(),
-    let value2 = anotherOptionalValueFunc(),
-    let value3 = aOptionalValue 
-else {
-    doSomething()
-}
 ```
 
 - `guard` `else` 场景中:
+  - 如果 condition 换行了, 那 `guard` 要单独一行.
   - 如果 condition 换行了, 那 `else` 也要换行, 不允许放在最后一个 condition 同一行.
   - `else` 在任何场景下都可以换行
   - `else` 在任何场景下都要和 `{` 在同一行
@@ -835,14 +825,16 @@ else {
 guard let value = aOptionalValue, let value2 = aOptionalValue2 
 else { return false }
 
-guard let value = aOptionalValue, 
-      let value2 = aOptionalValue2 
+guard 
+    let value = aOptionalValue, 
+    let value2 = aOptionalValue2 
 else {
     return false
 }
 
-guard let value = aOptionalValue, 
-      let value2 = aOptionalValue2 
+guard 
+    let value = aOptionalValue, 
+    let value2 = aOptionalValue2 
 else { return false }
 ```
 
@@ -878,9 +870,9 @@ if ((x == 0 || y == 1) && z == 2) {
 }
 ```
 
-##### 禁止水平对齐  `强制`
+> ##### 禁止水平对齐  `强制❗️`
 
-**不要**在声明属性时，故意将类型名左对齐，这样做会使下一个添加代码的同学极其难受，因为可能 TA 并没有安装类似的美化插件，只能手动按空格来对齐，并且这样的代码有时中间空白会过多，容易看串行(háng)，类似的场景还有赋值号对齐, 注释对齐等等.
+**不要**在声明属性时，故意将其类型名左对齐，这样做会使下一个添加代码的同学极其难受，因为可能 TA 并没有安装类似的美化插件，只能手动按空格来对齐，并且这样的代码有时中间空白会过多，容易看串行(háng)，类似的场景还有赋值号对齐, 注释对齐等等.
 
 ```swift
 // ✅ 
@@ -914,7 +906,7 @@ let name = "phoenix" // blabla
 let temp = 123       // xxx
 ```
 
-##### switch 语句  `强制`
+> ##### switch 语句  `强制❗️`
 
 `case` 关键字的缩进和 `switch` 保持一致, `case` 分支块中如果只有一个语句, 可以与 `case` 同行, 如果换行应该相对 `case` 再缩进一个单位
 
@@ -978,7 +970,7 @@ case .same:
 // ✅
 switch value {
 case 1: print("one")
-case 2**...**4: print("two to four")
+case 2...4: print("two to four")
 case 5, 7: print("five or seven")
 case 8:
     print("一些单独的逻辑")
@@ -1001,7 +993,7 @@ default: break
 }
 ```
 
-##### 枚举  `强制`
+> ##### 枚举  `强制❗️`
 
 通常来说，一个 `enum` 里每行只有一个 `case`。逗号分隔形式只能在枚举项都没有关联值或者原始值时使用，所有枚举项都能从名字明确其含义而不需要额外的注释，就可以写在同一行。
 
@@ -1053,7 +1045,7 @@ public enum DependencyGraphNode {
 
 ```swift
 // ✅
-public enum BinaryTree**<**Element**>** {
+public enum BinaryTree<Element> {
     indirect case node(element: Element, left: BinaryTree, right: BinaryTree)
     case empty
 }
@@ -1061,7 +1053,7 @@ public enum BinaryTree**<**Element**>** {
 
 ```swift
 // ❌
-public enum BinaryTree**<**Element**>** {
+public enum BinaryTree<Element> {
     indirect case node(element: Element, left: BinaryTree, right: BinaryTree)
     case empty()
 }
@@ -1074,15 +1066,15 @@ public enum BinaryTree**<**Element**>** {
 ```swift
 // ✅
 public enum HTTPStatus: Int {
-    case ok **=** 200
+    case ok = 200
 
-    case badRequest **=** 400
-    case notAuthorized **=** 401
-    case paymentRequired **=** 402
-    case forbidden **=** 403
-    case notFound **=** 404
+    case badRequest = 400
+    case notAuthorized = 401
+    case paymentRequired = 402
+    case forbidden = 403
+    case notFound = 404
 
-    case internalServerError **=** 500
+    case internalServerError = 500
 }
 ```
 
@@ -1091,17 +1083,17 @@ public enum HTTPStatus: Int {
 ```swift
 // ❌
 public enum HTTPStatus: Int {
-    case badRequest **=** 400
-    case forbidden **=** 403
-    case internalServerError **=** 500
-    case notAuthorized **=** 401
-    case notFound **=** 404
-    case ok **=** 200
-    case paymentRequired **=** 402
+    case badRequest = 400
+    case forbidden = 403
+    case internalServerError = 500
+    case notAuthorized = 401
+    case notFound = 404
+    case ok = 200
+    case paymentRequired = 402
 }
 ```
 
-##### 声明 Attribute  `强制`
+> ##### 声明 Attribute  `强制❗️`
 
 - attribute 修饰 `存储属性` 时, attribute 可以与属性放在同一行 (换行也没问题), 但需要注意:
   - 如果有两个以上 attribute 同时修饰该属性, 则必须要换行, 且每个 attribute 单独一行
@@ -1192,7 +1184,7 @@ class SwiftClass: NSObject {
 }
 ```
 
-##### 尽量使用语法糖  `强制`
+> ##### 尽量使用语法糖  `强制❗️`
 
 对于 `Array`, `Dictionary`, `Optional` 使用语法糖, 而不是采用泛型的写法
 
@@ -1210,7 +1202,7 @@ var employees: Dictionary<Int, String>
 var faxNumber: Optional<Int>
 ```
 
-##### 空数组和字典采用类型标注的方式初始化  `强制`
+> ##### 空数组和字典采用类型标注的方式初始化  `强制❗️`
 
 ```swift
 // ✅
@@ -1226,7 +1218,7 @@ var lookup = [String: Int]()
 var aSet = Set<Int>()
 ```
 
-##### 适时使用类型推断来简写  **强制**
+> ##### 适时使用类型推断来简写  **强制**
 
 ```swift
 // ✅
@@ -1261,7 +1253,7 @@ func someDirection() -> Direction {
 }
 ```
 
-##### 单行表达式**不要**省略**return****  ****强制**
+> ##### 单行表达式**不要**省略 return  `强制❗️`
 
 当单行表达式结果需要被 `return` 时, 除了单行闭包内的场景可以省略 `return`, 其他所有场景, 如 `function`, `computed property getter`, `subscript` 等, 此时**不要**省略 `return` 关键字, 否则会影响代码可读性.
 
@@ -1305,7 +1297,7 @@ var isEnable: Bool {
 let squares = [1, 2, 3].map { return $0 * $0 }
 ```
 
-##### `get`/`set`/`willSet`/`didSet`  `强制`
+> ##### `get`/`set`/`willSet`/`didSet`  `强制❗️`
 
 - 书写顺序:  `get` `set`; `willSet` `didSet`
 - 不要为 `set` `willSet` `didSet` 添加参数名, 直接使用默认的 `newValue` `oldValue`
@@ -1363,7 +1355,7 @@ var test: Int = 1 {
 }
 ```
 
-##### 函数, 常量, 变量修饰符的顺序  `强制`
+> ##### 函数, 常量, 变量修饰符的顺序  `强制❗️`
 
 修饰 `func` `var` 的关键字有很多, 建议顺序如下:
 
@@ -1382,7 +1374,7 @@ open class TimeMachine {
 }
 ```
 
-##### 省略 `self`  `建议`
+> ##### 省略 `self`  `建议🌵`
 
 通常情况下在调用一个类型自己的属性或方法时, 建议省略 `self`, 除非是编译器要求必须写明的场景, 比如: 逃逸闭包引用 `self`, 初始化方法中避免属性和参数歧义等.
 
@@ -1424,7 +1416,7 @@ final class Listing {
 }
 ```
 
-##### 链式调用   `建议`
+> ##### 链式调用   `建议🌵`
 
 - 基本规则是单行书写, 如需换行, 则每个方法调用都要换行, 缩进一个单位
 
@@ -1515,7 +1507,7 @@ LinearGradient(
 .clipped()
 ```
 
-##### **Void** 和空元组 **()** `强制`
+> ##### **Void** 和空元组 **()** `强制❗️`
 
 `Void` 是空元组 `()` 的 `typealias`，所以从实现来说它们是等价的。
 
@@ -1529,7 +1521,7 @@ func doSomething() {
   // ...
 }
 
-let callback: () **->** Void
+let callback: () -> Void
 
 func foo() -> (Int) -> Void {
   // ...
@@ -1538,18 +1530,18 @@ func foo() -> (Int) -> Void {
 
 ```swift
 // ❌
-func doSomething() **->** Void {
+func doSomething() -> Void {
   // ...
 }
 
-func doSomething2() **->** () {
+func doSomething2() -> () {
   // ...
 }
 
-let callback: () **->** ()
+let callback: () -> ()
 ```
 
-##### 三目运算符  `强制`
+> ##### 三目运算符  `强制❗️`
 
 三目运算符 `?:` 不要写的过长，尽量避免多组三目运算嵌套在一起，这样会影响可读性。`?` `:` 前后都要留有空格，必要时也可以加括号或换行来提高可读性.
 
@@ -1575,7 +1567,7 @@ result = isHorizontal ? x : y
 result = a > b ? x = c > d ? c : d : y
 ```
 
-##### 多行文本  `强制`
+> ##### 多行文本  `强制❗️`
 
 多行文本使用 `"""` 包裹, 结尾的 `"""` 与每行开头对齐, 且都缩进一个单位
 
@@ -1622,7 +1614,7 @@ let message = "You cannot charge the flux " +
     "have \(credits) credits available."
 ```
 
-##### 括号换行  `强制`
+> ##### 括号换行  `强制❗️`
 
 将带有分支的代码（`if`，`else`，`switch`，`while` 方法等等）自己分支的开始括号（`(`，`{`）放在同一行 ([1TBS style](https://en.m.wikipedia.org/wiki/Indentation_style#1TBS))，来保证代码的紧凑可读。
 
@@ -1637,7 +1629,7 @@ if enable {
 }
 
 // ✅  https://en.wikipedia.org/wiki/Indentation_style  **Variant: Stroustrup
-**if enable {
+if enable {
 
 } 
 else {
@@ -1688,7 +1680,7 @@ let rowContent = [listingUrgencyDatesRowContent(),
                   listingUrgencyBookedShortRowContent()]
 ```
 
-##### `typealias` 换行  `强制`
+> ##### `typealias` 换行  `强制❗️`
 
 `typealias` 合并协议时, 如果需要换行, 应该从 `=` 之后开始换行, 且换行内容左对齐, 缩进一个单位
 
@@ -1720,9 +1712,9 @@ public typealias AnyObjectExtensionable =
 ```swift
 // ✅
 typealias PerformanceTrackingIndexResult = (
-    Element**.**Index?,
-    PerformanceTrackingIndexStatistics**.**Timings,
-    PerformanceTrackingIndexStatistics**.**SpaceUsed
+    Element.Index?,
+    PerformanceTrackingIndexStatistics.Timings,
+    PerformanceTrackingIndexStatistics.SpaceUsed
 )
 
 typealias LogInCompletion = (
@@ -1735,7 +1727,7 @@ typealias AutofillLoginPromptViewControllerCompletion = ((
 ) -> Void)?
 ```
 
-##### 空代码块  `强制`
+> ##### 空代码块  `强制❗️`
 
 空代码块应写作 `{}`
 
@@ -1752,7 +1744,7 @@ typealias AutofillLoginPromptViewControllerCompletion = ((
 `}`
 ```
 
-##### 关于空格  `强制`
+> ##### 关于空格  `强制❗️`
 
 - 任意场景下逗号后面要有空格, 前面**没有**空格
 
@@ -2026,7 +2018,7 @@ prefix func ±<T: FloatingPoint>(number: T) -> (T, T) {
 }
 ```
 
-##### 关于空行  `强制`
+> ##### 关于空行  `强制❗️`
 
 空行本质上是为了让不同逻辑的代码区分开来，更方便阅读
 
@@ -2117,13 +2109,13 @@ extension BrowsingMenuViewController: UITableViewDelegate {
 }
 ```
 
-##### 重载  `强制`
+> ##### 重载  `强制❗️`
 
 当一个类型有多个构造器或者下标方法，或者一个文件/类型内有多个相同名字的函数（尽管可能有不同的实参标签），并且当这些重载在同一类型或者扩展作用域内时，它们应该按顺序排列，不应该在中间插入其他代码。
 
 ## 命名
 
-##### 通用基本规则  `强制`
+> ##### 通用基本规则  `强制❗️`
 
 - 不要使用拼音，中文，emoji 表情等特殊字符，并遵守苹果推荐的长的，完整性描述的命名规则。
 
@@ -2198,7 +2190,7 @@ class ProductionLine {
 - 使用大众所熟知的专业名词, 而不是创建一个新名词. 如果有必要新建一个术语名词, 则必须以注释的方式解释清楚其含义, 用途和用法.
 - **避免**使用非标准的缩写, 如 `button` 缩写为 `btn` ，`label` 缩写为 `lbl`
 
-##### 目录名 / 文件名  `强制`
+> ##### 目录名 / 文件名  `强制❗️`
 
 - 目录和文件名中不能包含空格
 - 文件名通常要以大写驼峰式命名，需要反映出其实现了什么类型，或是一组类型的通用名称。
@@ -2220,7 +2212,7 @@ TopBar+searchBubble.swift
 StringAdditions.swift
 ```
 
-##### 类型名  `强制`
+> ##### 类型名  `强制❗️`
 
 - 包括 `class`, `struct`, `enum`, `protocol`, 以及 `typealias` 修饰的别名，泛型类型，采用大写驼峰命名， **不加**前缀
 
@@ -2258,7 +2250,7 @@ func swap<Thing>(_ a: inout Thing, _ b: inout Thing)
 class VolumeController {}
 ```
 
-##### 函数名 / 方法名  `强制`
+> ##### 函数名 / 方法名  `强制❗️`
 
 - 基本规则
   - 以小写字母开头，并混合驼峰格式。每个具名参数也应该以小写字母开头
@@ -2451,35 +2443,33 @@ func namePickerShouldReload() -> Bool
       | `x.sort()`    | `z = x.sorted()`     |
       | `x.append(y)` | `z = x.appending(y)` |
 
-    ```swift
-    ```
-
-// ✅
-/// 反转 self
-mutating func reverse()
-
-/// 返回一个反转后的 self 的拷贝, self 本身没有变化
-func reversed() -> Self
-
-x.reverse()
-let y = x.reversed()
-
-// ✅
-/// 删掉 self 中的所有新行
-mutating func stripNewlines()
-
-/// 复制 self, 然后删掉新对象中的所有新行, self 本身没有变化
-func strippingNewlines() -> String
-
-s.stripNewlines()
-let oneLine = t.strippingNewlines()
-
-```
-		- 如果方法操作是以名词描述的, 那么用这个名词来作为 `nonmutating` 方法的名字, 用 `form+名词`的组合作为 `mutating` 方法的名字
-		|   **Nonmutating**    |     **Mutating**      |
-|----------------------|-----------------------|
-| `x = y.union(z)`     | `y.formUnion(z)`      |
-| `j = c.successor(i)` | `c.formSuccessor(&i)` |
+        ```swift
+        // ✅
+        /// 反转 self
+        mutating func reverse()
+        
+        /// 返回一个反转后的 self 的拷贝, self 本身没有变化
+        func reversed() -> Self
+        
+        x.reverse()
+        let y = x.reversed()
+        
+        // ✅
+        /// 删掉 self 中的所有新行
+        mutating func stripNewlines()
+        
+        /// 复制 self, 然后删掉新对象中的所有新行, self 本身没有变化
+        func strippingNewlines() -> String
+        
+        s.stripNewlines()
+        let oneLine = t.strippingNewlines()
+        ```
+	- 如果方法操作是以名词描述的, 那么用这个名词来作为 `nonmutating` 方法的名字, 用 `form+名词`的组合作为 `mutating` 方法的名字
+	
+        |   **Nonmutating**    |     **Mutating**      |
+        |----------------------|-----------------------|
+        | `x = y.union(z)`     | `y.formUnion(z)`      |
+        | `j = c.successor(i)` | `c.formSuccessor(&i)` |
 
 
 - 返回 `Bool` 类型的的方法和属性应该使用断言式的命名, 如`x.isEmpty`,  `line1.intersects(line2)`, `hasMember`
@@ -2588,18 +2578,15 @@ extension String {
   - 低精度向高精度转换, 省略第一个参数的标签
   - 高精度向低精度转换, 不要省略参数标签
 
-  ```swift
-  ```
-
-// ✅
-extension UInt32 {
-/// Creates an instance having the specified `value`.
-init(_ value: Int16)            ← 拓宽精度, 省略标签
-/// Creates an instance having the lowest 32 bits of `source`.
-init(truncating source: UInt64)  ← 丢失精度, 不要省略标签
-}
-
-```
+    ```swift
+    // ✅
+    extension UInt32 {
+    /// Creates an instance having the specified `value`.
+    init(_ value: Int16)            ← 拓宽精度, 省略标签
+    /// Creates an instance having the lowest 32 bits of `source`.
+    init(truncating source: UInt64)  ← 丢失精度, 不要省略标签
+    }
+    ```
 
 - 当第一个参数是介词短语的形式时, 需要为其添加一个参数标签, 并且参数标签要从介词开始, 如:
 
@@ -2658,12 +2645,12 @@ struct Array {
 }
 ```
 
-##### 资源命名  `强制`
+> ##### 资源命名  `强制❗️`
 
 - 采用 `snake_case` 方式，如 `tt_category_selector_search_icon.png`
 - 如果是图片, 实际命名需要和 Assets 中的 item 保持一致
 
-##### 其他场景使用小写驼峰   `强制`
+> ##### 其他场景使用小写驼峰   `强制❗️`
 
 通常来说, 除了前面提到的场景， 其他场景都使用小写驼峰的命名方式，常见的如下：
 
@@ -2718,7 +2705,7 @@ var getCellSize: CGSize { ... }
 var calculateCellSize: CGSize { ... }
 ```
 
-##### `extension` 中的方法及属性命名  `强制`
+> ##### `extension` 中的方法及属性命名  `强制❗️`
 
 基本命名规则与上面章节的描述一致, 但还应注意一下几点
 
@@ -2804,7 +2791,7 @@ extension Reer where Base == String {
 "Another string".re.matches(regex: "[1-9]\d{5}(?!\d)")
 ```
 
-##### 特殊名词的大小写区分 强制
+> ##### 特殊名词的大小写区分 `强制❗️`
 
 一些名词是首字母缩写的，应该全部大写或全部小写，不要采用首字母大写的方式。以下列举了常见的 case，但不仅仅限于这些名词
 
@@ -2816,7 +2803,19 @@ iOS, JSON, XML, CDN, json, xml, URL, ID, HTTP, JPG, RGB, WebP, ASCII, SMTP
 ios, IOS, Json, Xml, Cdn, Url, Id
 ```
 
-##### 可选值绑定  `强制`
+```
+在 Swift Foudation 中, URL 代表类型, 所以不要使用 URL 作为变量名, 
+而是使用 url, 或更具体些： xxxURL。
+另外对于 String 类型的 url, 
+可以考虑使用 URLString, xxxURLString之类的命名。
+// ❌
+let URL = URL(string: "http://apple.com")!
+```
+```
+如果特殊名词在变量名中间，如  iOS，iPhone，则需要改为 IOS,  不然首个小写 i 会和前面单词混在一起。
+```
+
+> ##### 可选值绑定  `强制❗️`
 
 如果是 Swift 5.7 以下的版本, 在进行可选值绑定命名时, 应该使用跟可选变量一样的名字
 
@@ -2847,7 +2846,7 @@ UIView.animate(withDuration: 2.0) { [weak self] in
 }
 ```
 
-##### 无需为静态 / 类属性名再添加类型名  `强制`
+> ##### 无需为静态 / 类属性名再添加类型名  `强制❗️`
 
 ```swift
 // ✅
@@ -2879,7 +2878,7 @@ public class URLSession {
 
 ## 注释
 
-##### 基本规则
+> ##### 基本规则
 
 - 理论上，在阅读一段代码时，如果不能让人快速地, 明确地读懂这段代码，Author 都需要添加注释，注释要详细的解释清楚这个类这个方法，或者这一段代码是**做什么**的，在使用的时候需要**注意什么**。甚至在一些场景要说明**为什么**要这样写。
 - **为类的线程安全性作注释**。如果类的实例可以被多个线程访问，记得注释多线程条件下的使用规则。
@@ -2889,7 +2888,7 @@ public class URLSession {
 - 在必要的地方使用 `// MARK: - 方法集` `// TODO: 等待实现` `// FIXME: 有bug，需要修改` 以优化代码结构或避免遗忘重要的待修复问题。
 - 如果代码可以自解释, 则无需注释
 
-##### 格式
+> ##### 格式
 
 ```swift
 /// Writes the textual representation of each    ← Summary
@@ -2979,19 +2978,19 @@ public extension Date {
 }
 ```
 
-##### Xcode 支持的注释标签
+> ##### Xcode 支持的注释标签
 
-| ##### [Attention](https://developer.apple.com/library/prerelease/mac/documentation/Xcode/Reference/xcode_markup_formatting_ref/Attention.html)   | ##### [Author](https://developer.apple.com/library/prerelease/mac/documentation/Xcode/Reference/xcode_markup_formatting_ref/Author.html)               | ##### [Authors](https://developer.apple.com/library/prerelease/mac/documentation/Xcode/Reference/xcode_markup_formatting_ref/Authors.html)           | ##### [Bug](https://developer.apple.com/library/prerelease/mac/documentation/Xcode/Reference/xcode_markup_formatting_ref/Bug.html)               |
+| [Attention](https://developer.apple.com/library/prerelease/mac/documentation/Xcode/Reference/xcode_markup_formatting_ref/Attention.html)   |  [Author](https://developer.apple.com/library/prerelease/mac/documentation/Xcode/Reference/xcode_markup_formatting_ref/Author.html)               |  [Authors](https://developer.apple.com/library/prerelease/mac/documentation/Xcode/Reference/xcode_markup_formatting_ref/Authors.html)           |  [Bug](https://developer.apple.com/library/prerelease/mac/documentation/Xcode/Reference/xcode_markup_formatting_ref/Bug.html)               |
 | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| ##### [Complexity](https://developer.apple.com/library/prerelease/mac/documentation/Xcode/Reference/xcode_markup_formatting_ref/Complexity.html) | ##### [Copyright](https://developer.apple.com/library/prerelease/mac/documentation/Xcode/Reference/xcode_markup_formatting_ref/Copyright.html)         | ##### [Date](https://developer.apple.com/library/prerelease/mac/documentation/Xcode/Reference/xcode_markup_formatting_ref/Date.html)                 | ##### [Experiment](https://developer.apple.com/library/prerelease/mac/documentation/Xcode/Reference/xcode_markup_formatting_ref/Experiment.html) |
-| ##### [Important](https://developer.apple.com/library/prerelease/mac/documentation/Xcode/Reference/xcode_markup_formatting_ref/Important.html)   | ##### [Invariant](https://developer.apple.com/library/prerelease/mac/documentation/Xcode/Reference/xcode_markup_formatting_ref/Invariant.html)         | ##### [Note](https://developer.apple.com/library/prerelease/mac/documentation/Xcode/Reference/xcode_markup_formatting_ref/Note.html)                 | ##### [Parameter](https://developer.apple.com/library/prerelease/mac/documentation/Xcode/Reference/xcode_markup_formatting_ref/Parameter.html)   |
-| ##### [Parameters](https://developer.apple.com/library/prerelease/mac/documentation/Xcode/Reference/xcode_markup_formatting_ref/Parameters.html) | ##### [Postcondition](https://developer.apple.com/library/prerelease/mac/documentation/Xcode/Reference/xcode_markup_formatting_ref/Postcondition.html) | ##### [Precondition](https://developer.apple.com/library/prerelease/mac/documentation/Xcode/Reference/xcode_markup_formatting_ref/Precondition.html) | ##### [Remark](https://developer.apple.com/library/prerelease/mac/documentation/Xcode/Reference/xcode_markup_formatting_ref/Remark.html)         |
-| ##### [Requires](https://developer.apple.com/library/prerelease/mac/documentation/Xcode/Reference/xcode_markup_formatting_ref/Requires.html)     | ##### [Returns](https://developer.apple.com/library/prerelease/mac/documentation/Xcode/Reference/xcode_markup_formatting_ref/Returns.html)             | ##### [SeeAlso](https://developer.apple.com/library/prerelease/mac/documentation/Xcode/Reference/xcode_markup_formatting_ref/SeeAlso.html)           | ##### [Since](https://developer.apple.com/library/prerelease/mac/documentation/Xcode/Reference/xcode_markup_formatting_ref/Since.html)           |
-| ##### [Throws](https://developer.apple.com/library/prerelease/mac/documentation/Xcode/Reference/xcode_markup_formatting_ref/Throws.html)         | ##### [ToDo](https://developer.apple.com/library/prerelease/mac/documentation/Xcode/Reference/xcode_markup_formatting_ref/Todo.html)                   | ##### [Version](https://developer.apple.com/library/prerelease/mac/documentation/Xcode/Reference/xcode_markup_formatting_ref/Version.html)           | ##### [Warning](https://developer.apple.com/library/prerelease/mac/documentation/Xcode/Reference/xcode_markup_formatting_ref/Warning.html)       |
+|  [Complexity](https://developer.apple.com/library/prerelease/mac/documentation/Xcode/Reference/xcode_markup_formatting_ref/Complexity.html) |  [Copyright](https://developer.apple.com/library/prerelease/mac/documentation/Xcode/Reference/xcode_markup_formatting_ref/Copyright.html)         |  [Date](https://developer.apple.com/library/prerelease/mac/documentation/Xcode/Reference/xcode_markup_formatting_ref/Date.html)                 |  [Experiment](https://developer.apple.com/library/prerelease/mac/documentation/Xcode/Reference/xcode_markup_formatting_ref/Experiment.html) |
+|  [Important](https://developer.apple.com/library/prerelease/mac/documentation/Xcode/Reference/xcode_markup_formatting_ref/Important.html)   |  [Invariant](https://developer.apple.com/library/prerelease/mac/documentation/Xcode/Reference/xcode_markup_formatting_ref/Invariant.html)         |  [Note](https://developer.apple.com/library/prerelease/mac/documentation/Xcode/Reference/xcode_markup_formatting_ref/Note.html)                 |  [Parameter](https://developer.apple.com/library/prerelease/mac/documentation/Xcode/Reference/xcode_markup_formatting_ref/Parameter.html)   |
+|  [Parameters](https://developer.apple.com/library/prerelease/mac/documentation/Xcode/Reference/xcode_markup_formatting_ref/Parameters.html) |  [Postcondition](https://developer.apple.com/library/prerelease/mac/documentation/Xcode/Reference/xcode_markup_formatting_ref/Postcondition.html) |  [Precondition](https://developer.apple.com/library/prerelease/mac/documentation/Xcode/Reference/xcode_markup_formatting_ref/Precondition.html) |  [Remark](https://developer.apple.com/library/prerelease/mac/documentation/Xcode/Reference/xcode_markup_formatting_ref/Remark.html)         |
+|  [Requires](https://developer.apple.com/library/prerelease/mac/documentation/Xcode/Reference/xcode_markup_formatting_ref/Requires.html)     |  [Returns](https://developer.apple.com/library/prerelease/mac/documentation/Xcode/Reference/xcode_markup_formatting_ref/Returns.html)             |  [SeeAlso](https://developer.apple.com/library/prerelease/mac/documentation/Xcode/Reference/xcode_markup_formatting_ref/SeeAlso.html)           |  [Since](https://developer.apple.com/library/prerelease/mac/documentation/Xcode/Reference/xcode_markup_formatting_ref/Since.html)           |
+|  [Throws](https://developer.apple.com/library/prerelease/mac/documentation/Xcode/Reference/xcode_markup_formatting_ref/Throws.html)         |  [ToDo](https://developer.apple.com/library/prerelease/mac/documentation/Xcode/Reference/xcode_markup_formatting_ref/Todo.html)                   |  [Version](https://developer.apple.com/library/prerelease/mac/documentation/Xcode/Reference/xcode_markup_formatting_ref/Version.html)           |  [Warning](https://developer.apple.com/library/prerelease/mac/documentation/Xcode/Reference/xcode_markup_formatting_ref/Warning.html)       |
 
 ## 优雅示范
 
-##### 尽量使用方法和属性，减少使用全局的, 静态的函数，变量和常量  `建议`
+> ##### 尽量使用方法和属性，减少使用全局的, 静态的函数，变量和常量  `建议🌵`
 
 - 全局函数通常只用于特殊场景
 
@@ -3034,14 +3033,14 @@ let sorted = mergeSort(items)
 launch(&rocket)
 ```
 
-##### 嵌套和命名空间  `建议`
+> ##### 嵌套和命名空间  `建议🌵`
 
 Swift 里允许嵌套 `enum`、`struct` 和 `class`，相比命名约定, 嵌套更适合表示作用域和类型之间的分级关系，因此推荐使用。例如，把类型相关的 `enum` 如错误类型放到这个类型内部。
 
 ```swift
 // ✅
 class Parser {
-    enum Error: Swift**.**Error {
+    enum Error: Swift.Error {
         case invalidToken(String)
         case unexpectedEOF
     }
@@ -3067,7 +3066,7 @@ enum Environment {
 ```
 
 ```swift
-// ⚠️
+// 🟡
 class Parser {
     func parse(text: String) throws {
         // ...
@@ -3080,7 +3079,7 @@ enum ParseError: Error {
 }
 ```
 
-##### 为元组成员以及闭包参数增加标签  `建议`
+> ##### 为元组成员以及闭包参数增加标签  `建议🌵`
 
 这样做可以提高可读性, 并且可以在注释中对其解释说明
 
@@ -3103,7 +3102,7 @@ mutating func ensureUniqueStorage(
 ) -> (reallocated: Bool, capacityChanged: Bool)
 ```
 
-##### 初始化方法  `建议`
+> ##### 初始化方法  `建议🌵`
 
 对于 `struct`，Swift 会将实参为 `var` 属性和缺少默认值的 `let` 属性全部作为参数隐式生成 `init`, 可以直接使用，不需要写显式的构造器。除非是需要提供给其他组件使用时才需要显式的写明 `public init`
 
@@ -3116,8 +3115,8 @@ struct Kilometers: ExpressibleByIntegerLiteral {
         // ...
     }
 }
-let k1: Kilometers **=** 10
-let k2 **=** 10 as Kilometers
+let k1: Kilometers = 10
+let k2 = 10 as Kilometers
 ```
 
 ```swift
@@ -3127,18 +3126,18 @@ struct Kilometers: ExpressibleByIntegerLiteral {
         // ...
     }
 }
-let k **=** Kilometers(integerLiteral: 10)
+let k = Kilometers(integerLiteral: 10)
 ```
 
 使用类型名字直接调用构造器时，省略 `.init`, 如 `Brand(name: "Apple")`, 而不是 `Brand.init(name: "Apple")`. 但以下几种情况允许使用 `.init` 来初始化:
 
 ```swift
 // ✅ 使用元类型变量进行初始化时
-let type **=** lookupType(context)
-let x **=** type**.**init(arguments)
+let type = lookupType(context)
+let x = type.init(arguments)
 
 // ✅ 构造方法作为函数参数传入
-let x **=** makeValue(factory: MyType**.**init)
+let x = makeValue(factory: MyType.init)
 
 // ✅ 类型已经明确的场景可以不写类型, 直接用 .init 初始化
 let rect: CGRect? = .init(x: 0, y: 20, width: 200, height: 200)
@@ -3147,7 +3146,7 @@ var itemViewRect: CGRect {
 }
 ```
 
-##### 使用 `for-in` 和 `forEach` 相比 `while` 循环更具表达力  `建议`
+> ##### 使用 `for-in` 和 `forEach` 相比 `while` 循环更具表达力  `建议🌵`
 
 很多场景下, `for-in` 和 `forEach` 比 `while` 循环使用起来更方便, 可读性也更好
 
@@ -3179,7 +3178,7 @@ array.forEach { element in
 ```
 
 ```swift
-// ⚠️
+// 🟡
 var i = 0
 while i < 3 {
     print("Hello three times")
@@ -3195,21 +3194,21 @@ while i < attendeeList.count {
 }
 ```
 
-##### 集合类型判空使用 `isEmpty`  `强制`
+> ##### 集合类型判空使用 `isEmpty`  `强制❗️`
 
 ```swift
 // ✅
-**var** nums = []
+var nums = []
 nums.isEmpty
 ```
 
 ```swift
 // ❌
-**var** nums = []
+var nums = []
 nums.count == 0
 ```
 
-##### 模式匹配  `强制`
+> ##### 模式匹配  `强制❗️`
 
 每个模式匹配元素前面都有单独的 `let` 和 `var` 关键字。适用于整个匹配模式的前置简写 `let`/`var` 是禁止的，因为当匹配模式的值本身是个变量时，会引入非预期行为。
 
@@ -3220,18 +3219,18 @@ enum DataPoint {
     case labeled(String, Int)
 }
 
-let label **=** "goodbye"
+let label = "goodbye"
 // 因为没有前置的 `let`，`label` 在这里是一个值，
 // 所以下面的模式匹配中只会匹配标签是“goodbye”的数据点。 
-switch DataPoint**.**labeled("hello", 100) {
-case **.**labeled(label, let value):
+switch DataPoint.labeled("hello", 100) {
+case .labeled(label, let value):
     // ...
 }
 
 // 每个单独的绑定使用前置 `let` 能清晰地表达引入了一个新的绑定（覆盖枚举项里的局部变量）
 // 而不是匹配局部变量的值。这样，这个模式匹配会将数据点和任意字符串标签匹配。
-switch DataPoint**.**labeled("hello", 100) {
-case **.**labeled(let label, let value):
+switch DataPoint.labeled("hello", 100) {
+case .labeled(let label, let value):
     // ...
 }
 ```
@@ -3239,8 +3238,8 @@ case **.**labeled(let label, let value):
 ```swift
 // ❌ 在下面的例子中，如果作者意图是使用上面的 label 变量进行匹配，
 // 那么就会因为 let 适用于整个模式匹配，导致该值会被任何绑定的字符串所覆盖。
-switch DataPoint**.**labeled("hello", 100) {
-case let **.**labeled(label, value):
+switch DataPoint.labeled("hello", 100) {
+case let .labeled(label, value):
     // ...
 }
 ```
@@ -3249,17 +3248,17 @@ case let **.**labeled(label, value):
 
 ```swift
 // ✅
-enum BinaryTree**<**Element**>** {
+enum BinaryTree<Element> {
     indirect case subtree(
-        left: BinaryTree**<**Element**>**, 
-        right: BinaryTree**<**Element**>**
+        left: BinaryTree<Element>, 
+        right: BinaryTree<Element>
     )
     case leaf(element: Element)
 }
 switch treeNode {
-case **.**subtree(let left, let right):
+case .subtree(let left, let right):
     // ...
-case **.**leaf(let element):
+case .leaf(let element):
     // ...
 }
 ```
@@ -3267,9 +3266,9 @@ case **.**leaf(let element):
 ```swift
 // ❌ 多余并缺乏有用信息的标签只会造成混淆
 switch treeNode {
-case **.**subtree(left: let left, right: let right):
+case .subtree(left: let left, right: let right):
     // ...
-case **.**leaf(element: let element):
+case .leaf(element: let element):
     // ...
 }
 ```
@@ -3296,7 +3295,7 @@ case .dog(_, _, _):
 }
 ```
 
-##### Golden Path  `强制`
+> ##### Golden Path  `强制❗️`
 
 函数内尽量不要嵌套 `if` 语句，提前 `return` 会提高可读性, 且使用 `guard` 来实现会更好.
 
@@ -3340,9 +3339,10 @@ func computeFFT(
 
 ```swift
 // ✅
-guard let number1 = number1,
-      let number2 = number2,
-      let number3 = number3 
+guard 
+    let number1 = number1,
+    let number2 = number2,
+    let number3 = number3 
 else {
     fatalError("impossible")
 }
@@ -3394,7 +3394,7 @@ if isFriendly {
 }
 ```
 
-##### 定义新运算符  `强制`
+> ##### 定义新运算符  `强制❗️`
 
 不理智地使用自定义运算符会显著影响代码可读性，因为比起标准库中更常用的运算符，这样的运算符缺乏共识，不容易被理解。
 
@@ -3402,7 +3402,7 @@ if isFriendly {
 
 自定义 `<~~` 和 `~~>` 运算符来解码和编码 JSON 数据就是典型的禁止用法。这样的运算符不是 JSON 领域问题的原生处理方式，哪怕是有经验的 Swift 工程师，在没有运算符文档的情况下也可能会对这种处理代码有着不同的理解。
 
-##### 使用高阶函数使代码更清晰  `建议`
+> ##### 使用高阶函数使代码更清晰  `建议🌵`
 
 ```swift
 // ✅
@@ -3449,7 +3449,7 @@ var items = [1, 2, 3]**
 **items.first { $0 > 1 } _// 查找出第一个大于1的元素直接返回_
 ```
 
-##### 默认使用 `final` 修饰 `class`  `建议`
+> ##### 默认使用 `final` 修饰 `class`  `建议🌵`
 
 如题, 只有当 `class` 需要被重写的时候, 再移除 `final` 关键字
 
@@ -3461,13 +3461,13 @@ final class SettingsRepository {
 ```
 
 ```swift
-// ⚠️
+// 🟡
 class SettingsRepository {
     // ...
 }
 ```
 
-##### 可选变量如果不使用绑定值, 那么直接判断 `nil`  `强制`
+> ##### 可选变量如果不使用绑定值, 那么直接判断 `nil`  `强制❗️`
 
 ```swift
 // ✅
@@ -3485,11 +3485,11 @@ if let _ = thing {
 }
 ```
 
-##### 使用专门的日志库 `强制`
+> ##### 使用专门的日志库 `强制❗️`
 
 使用如 `os_log` 或 `swift-log` 的日志库, 而不是使用 `print(…)`, `debugPrint(…)`, or `dump(…)`.
 
-##### 单例的标准写法  `强制`
+> ##### 单例的标准写法  `强制❗️`
 
 单例应该命名为 `shared`, 而不是 `share` 或是其他单词, 且初始化方法应标记为 `private`
 
@@ -3515,13 +3515,13 @@ class AccountManager {
 }
 ```
 
-##### 尽量避免使用 `Any/AnyObject`  `建议`
+> ##### 尽量避免使用 `Any/AnyObject`  `建议🌵`
 
 使用 `Any` `AnyObject` 确实明确的类型信息, 编译器无法检查类型, 可能会带来一些安全隐患, 或者业务问题. 另外在使用时需要用 `as?` 进行转换, 影响可读性
 
 一些场景可以使用泛型或者协议关联类型替代 `Any`
 
-##### 避免使用 Magic Number  `强制`
+> ##### 避免使用 Magic Number  `强制❗️`
 
 Magic Number 会使代码可读性变差，而且如果后续修改也要在每个使用的地方修改，应该将其定义为变量, 常量或枚举再使用
 
@@ -3569,25 +3569,25 @@ var loadState: Int {
 }
 ```
 
-##### 使用 `defer` `建议`
+> ##### 使用 `defer` `建议🌵`
 
 可以在 `defer` 中做资源释放等操作, 避免遗漏
 
 ```swift
 // ✅
-**func** **method**() {
+func method() {
     lock.lock()
-    **defer** { lock.unlock() }
-    _// do some thing_
+    defer { lock.unlock() }
+    // do some thing
 }
 ```
 
-##### 使用字符串插值 `建议`
+> ##### 使用字符串插值 `建议🌵`
 
 ```swift
 // ✅
-**let** multiplier = 3
-**let** message = "\(multiplier) times 2.5 is \(Double(multiplier) * 2.5)"
+let multiplier = 3
+let message = "\(multiplier) times 2.5 is \(Double(multiplier) * 2.5)"
 ```
 
 ```swift
@@ -3598,7 +3598,7 @@ let message = String(multiplier)
     + String((Double(multiplier) * 2.5))
 ```
 
-##### 使用 `@discardableResult` `强制`
+> ##### 使用 `@discardableResult` `强制❗️`
 
 有些方法的的返回值并不一定被使用, 可以加上 `@discardableResult` 来消除 Xcode 警告
 
@@ -3613,11 +3613,11 @@ public struct Stack<E> {
 }
 ```
 
-##### 避免元素数量过多的元组  `强制`
+> ##### 避免元素数量过多的元组  `强制❗️`
 
 当元组元素超过 **3** 个时, 应该考虑改为使用 `struct` 或 `class`
 
-##### `protocol` 视情况添加约束类型 `建议`
+> ##### `protocol` 视情况添加约束类型 `建议🌵`
 
 当 `protocol` 仅限于 `class` 或者某种父类才能使用时, 为其添加约束可以避免误用, 也会使得编译器不需要考虑其他类型的实现, 从而提高运行时性能
 
@@ -3626,7 +3626,7 @@ protocol ObjectProtocol: AnyObject {}
 protocol SomeProtocol: UIViewController {}
 ```
 
-##### 当函数参数为闭包时, 可以通过一些方式来兼容多种调用 `建议`
+> ##### 当函数参数为闭包时, 可以通过一些方式来兼容多种调用 `建议🌵`
 
 一些场景下为函数增加 `rethrows`, 返回值, 为他的闭包类型的参数增加 `throws` 和返回值, 就可以兼容多种调用方式
 
@@ -3664,7 +3664,7 @@ let ret = try? locked(lock) { () -> String in
 }
 ```
 
-##### 对高频使用且较为简短的函数或计算属性进行内联  `建议`
+> ##### 对高频使用且较为简短的函数或计算属性进行内联  `建议🌵`
 
 使用 `@inlinable` 或 `@inline(__always)` 对函数或计算属性进行内联
 
@@ -3678,7 +3678,7 @@ extension Foo {
 func bar() -> Baz { ... }
 ```
 
-##### 使用 `lazy` `建议`
+> ##### 使用 `lazy` `建议🌵`
 
 - 使用 `lazy` 延迟初始化属性
 
@@ -3702,7 +3702,7 @@ result[0] // 对1进行map操作
 result[1] // 对2进行map操作
 ```
 
-##### 使用自动闭包 `@autoclosure` 来避免一些不必要的计算 `建议`
+> ##### 使用自动闭包 `@autoclosure` 来避免一些不必要的计算 `建议🌵`
 
 ```swift
 // ✅ 比如实现`或`操作, 当左面为true时, 不需要再计算右边了
@@ -3717,7 +3717,7 @@ func || (left: Bool, right: @autoclosure () -> Bool) -> Bool {
 let value = condition1 || (9 * 9 + 4 / 2 > 35)
 ```
 
-##### Objective-C 互操作性  `强制`
+> ##### Objective-C 互操作性  `强制❗️`
 
 如果 Swift 类需要被 Objective-C 使用, 使用 `@``objc` 关键字来导出 API, 尽量不要使用 `@objcMember` 全量导出所有 API
 
@@ -3742,15 +3742,15 @@ public class PriceBreakdownViewController: UIViewController {
 
 ## 安全性
 
-##### 禁止用 `subscript` 直接访问数组元素 `强制`
+> ##### 禁止用 `subscript` 直接访问数组元素 `强制❗️`
 
 使用 `subscript` 访问数组元素应该先做边界检查, 或使用 `first`, `last` 之类的访问方式, 或编写自定义的安全访问扩展, 以保证不会越界崩溃
 
-##### 尽可能使用 `let` 而不是 `var`  `建议`
+> ##### 尽可能使用 `let` 而不是 `var`  `建议🌵`
 
 不确定常量还是变量时, 直接使用 `let`, 当你想要修改它时, 编译器会提示你.
 
-##### 访问控制  `建议`
+> ##### 访问控制  `建议🌵`
 
 - 除非已经明确作用域, 否则尽量使用 `private`, 如有必要再改为其他.
 - 除非是基础库, 否则通常不建议给 `extension` 指定为 `open` 或 `public` , 而是应该给扩展里的 `var` 或 `func` 单独指定访问控制符, 或直接使用默认的 `internal`
@@ -3769,7 +3769,7 @@ extension String {
 ```
 
 ```swift
-// ⚠️
+// 🟡
 public extension String {
     var isUppercase: Bool {
         // ...
@@ -3781,7 +3781,7 @@ public extension String {
 }
 ```
 
-##### 类型方法默认用 `static`, 而不是 `class`  `建议`
+> ##### 类型方法默认用 `static`, 而不是 `class`  `建议🌵`
 
 如题, 只有当需要被重写的时候, 再改为 `class` 修饰
 
@@ -3793,15 +3793,15 @@ class Fruit {
 ```
 
 ```swift
-// ⚠️
+// 🟡
 class Fruit {
     class func eatFruits(_ fruits: [Fruit]) { ... }
 }
 ```
 
-##### 尽可能处理掉编译器提示的警告  `建议`
+> ##### 尽可能处理掉编译器提示的警告  `建议🌵`
 
-##### 禁止使用 `unowned` 关键字  `强制`
+> ##### 禁止使用 `unowned` 关键字  `强制❗️`
 
 除非是必要的场景可以使用 `unowned`, 否则通常情况下应该使用 `weak`
 
@@ -3828,7 +3828,7 @@ resource.request().onComplete { [weak self] response in
 }
 ```
 
-##### 禁止使用 `!` 进行强制解包  `强制`
+> ##### 禁止使用 `!` 进行强制解包  `强制❗️`
 
 除非是**特别必要**的场景, 以及**非常确定**可选变量有值, 否则禁止使用 `!` 来对可选变量进行强制解包.
 
@@ -3846,7 +3846,7 @@ if let value = value {
 }
 ```
 
-##### 禁止强制类型转换 `强制`
+> ##### 禁止强制类型转换 `强制❗️`
 
 禁止对 `Any` 类型进行强制转换, 可能会引起崩溃
 
@@ -3864,10 +3864,10 @@ if let intValue = value as? Int {
 }
 ```
 
-##### 禁止使用 `try!` `强制`
+> ##### 禁止使用 `try!` `强制❗️`
 
 对于抛异常的函数调用, 禁止使用 `try!`, 应该使用 `do try catch` 处理异常, 或使用 `try?` 来避免崩溃
 
-##### 谨慎处理 Objective-C 传入 Swift 的值 `强制`
+> ##### 谨慎处理 Objective-C 传入 Swift 的值 `强制❗️`
 
 即使在 OC 中标记为 `nonnull` 的值, 由于不规范的使用依然可能是一个 `nil` 值, 如果该值传入 Swift 中使用, 就会引发崩溃. 不过通常这需要 OC 侧来保证值的可靠性, 但 Swift 使用者也应该格外小心.
