@@ -528,7 +528,7 @@ let index = index(
     }
         
     // 多尾随闭包场景: 首个闭包没有标签, 后面的其他闭包标签跟在上一个闭包的后面.
-    // 此方式适用于函数前面的**非闭包**参数较少, 一行可以写完的场景.
+    // 此方式适用于函数前面的非闭包参数较少, 一行可以写完的场景.
     UIView.animate(withDuration: 0.5) {
     // ...
     } completion: { finished in
@@ -1102,7 +1102,7 @@ public enum HTTPStatus: Int {
 ```swift
 // ✅
 public class MyViewController: UIViewController {
-    @IBOutlet private var tableView: UITableView**!**
+    @IBOutlet private var tableView: UITableView!
     @SomeWrapper var state: PageState
     @SomeWrapper(wrappedValue: 30, custom: 98.7) var context: AudioContext
     
@@ -1259,7 +1259,7 @@ func someDirection() -> Direction {
 
 ```swift
 // ✅
-func add(number1: Int, number2: Int) -> Int { return **number1 + number2 **}
+func add(number1: Int, number2: Int) -> Int { return number1 + number2 }
 
 public extension UserDefaults {
     subscript(_ key: String) -> Any? {
@@ -1628,7 +1628,7 @@ if enable {
 
 }
 
-// ✅  https://en.wikipedia.org/wiki/Indentation_style  **Variant: Stroustrup
+// ✅  https://en.wikipedia.org/wiki/Indentation_style Variant: Stroustrup
 if enable {
 
 } 
@@ -2243,7 +2243,7 @@ func write<target: OutputStream>(to target: inout target)
 func swap<Thing>(_ a: inout Thing, _ b: inout Thing)
 ```
 
-- 如果不是 view controller, 禁止以 `***Controller` 的方式命名
+- 如果不是 view controller, 禁止以 `Controller` 的方式命名
 
 ```swift
 // ❌
@@ -3106,7 +3106,7 @@ mutating func ensureUniqueStorage(
 
 对于 `struct`，Swift 会将实参为 `var` 属性和缺少默认值的 `let` 属性全部作为参数隐式生成 `init`, 可以直接使用，不需要写显式的构造器。除非是需要提供给其他组件使用时才需要显式的写明 `public init`
 
-永远不要直接调用遵循 `ExpressibleBy***Literal` 一类协议的构造器。
+永远不要直接调用遵循 `ExpressibleByLiteral` 一类协议的构造器。
 
 ```swift
 // ✅
@@ -3168,7 +3168,7 @@ for index in (0...3).reversed() {
     print(index)
 }
 
-**for** item **in** collection **where** item.hasProperty {
+for item in collection where item.hasProperty {
     print(item)
 }
 
@@ -3379,7 +3379,7 @@ if operationFailed { return }
 ```
 
 ```swift
-// ❌ 如果仅仅是对状态的判断, 主要意图**并非**要结束当前作用域, 那么使用 if 更合适
+// ❌ 如果仅仅是对状态的判断, 主要意图并非要结束当前作用域, 那么使用 if 更合适
 guard isFriendly else {
     print("You have the manners of a beggar.")
     return
@@ -3446,7 +3446,7 @@ items.filter { $0 > 1 }.first // 查找出所有大于1的元素，之后找出�
 ```swift
 // ✅
 var items = [1, 2, 3]**
-**items.first { $0 > 1 } _// 查找出第一个大于1的元素直接返回_
+items.first { $0 > 1 } _// 查找出第一个大于1的元素直接返回
 ```
 
 > ##### 默认使用 `final` 修饰 `class`  `建议🌵`
