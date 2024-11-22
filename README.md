@@ -3801,6 +3801,10 @@ class Fruit {
 
 > ##### 尽可能处理掉编译器提示的警告  `建议🌵`
 
+> ##### 保证 Range 的 lowerBound <= upperBound  `强制❗️`
+
+对于 Range 的 lowerBound 要保证小于等于 upperBound, 否则会引起运行时崩溃
+
 > ##### 禁止使用 `unowned` 关键字  `强制❗️`
 
 除非是必要的场景可以使用 `unowned`, 否则通常情况下应该使用 `weak`
