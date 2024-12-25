@@ -772,9 +772,8 @@ if let value = someOptionalValueFunc(),
     doSomething()
 }
 
-guard 
-    let value = aValueReturnedByAVeryLongOptionalThing(),
-    let value2 = aDifferentValueReturnedByAVeryLongOptionalThing()
+guard let value = aValueReturnedByAVeryLongOptionalThing(),
+      let value2 = aDifferentValueReturnedByAVeryLongOptionalThing()
 else {
     doSomething()
 }
@@ -789,7 +788,7 @@ if condition1 &&
 }
 ```
 
-- `if` 不允许单独一行
+- `if` 和 `guard` 不允许单独一行
 
 ```swift
 // ❌
@@ -799,10 +798,17 @@ if
     let value3 = aOptionalValue {
     doSomething()
 }
+
+guard
+    let value = someOptionalValueFunc(),
+    let value2 = anotherOptionalValueFunc(),
+    let value3 = aOptionalValue 
+else {
+    doSomething()
+}
 ```
 
 - `guard` `else` 场景中:
-  - 如果 condition 换行了, 那 `guard` 要单独一行.
   - 如果 condition 换行了, 那 `else` 也要换行, 不允许放在最后一个 condition 同一行.
   - `else` 在任何场景下都可以换行
   - `else` 在任何场景下都要和 `{` 在同一行
@@ -836,6 +842,11 @@ guard
     let value = aOptionalValue, 
     let value2 = aOptionalValue2 
 else { return false }
+
+guard let mountedVolumes = FileManager.default.mountedVolumeURLs(
+    includingResourceValuesForKeys: [],
+    options: [.produceFileReferenceURLs]
+) else { return URL(fileURLWithPath: "/") }
 ```
 
 ```swift
