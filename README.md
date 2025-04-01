@@ -831,16 +831,14 @@ else {
 guard let value = aOptionalValue, let value2 = aOptionalValue2 
 else { return false }
 
-guard 
-    let value = aOptionalValue, 
-    let value2 = aOptionalValue2 
+guard let value = aOptionalValue, 
+      let value2 = aOptionalValue2 
 else {
     return false
 }
 
-guard 
-    let value = aOptionalValue, 
-    let value2 = aOptionalValue2 
+guard let value = aOptionalValue, 
+      let value2 = aOptionalValue2 
 else { return false }
 
 guard let mountedVolumes = FileManager.default.mountedVolumeURLs(
