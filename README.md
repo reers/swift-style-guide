@@ -773,8 +773,7 @@ if let value = someOptionalValueFunc(),
 }
 
 guard let value = aValueReturnedByAVeryLongOptionalThing(),
-      let value2 = aDifferentValueReturnedByAVeryLongOptionalThing()
-else {
+      let value2 = aDifferentValueReturnedByAVeryLongOptionalThing() else {
     doSomething()
 }
 ```
@@ -810,7 +809,7 @@ else {
 
 - `guard` `else` 场景中:
   - 如果 condition 换行了, 那 `else` 也要换行, 不允许放在最后一个 condition 同一行.
-  - `else` 在任何场景下都可以换行
+  - `else` 在任何场景下都不单独一行, 如果 condition 换行了, 那 `else` 也不换行, 与最后一个 condition 同一行, 或与最后一个 condition 的尾括号同一行
   - `else` 在任何场景下都要和 `{` 在同一行
   - `else` 块中如果只有一条语句, 可以单行实现
 
@@ -823,23 +822,10 @@ guard let value = aOptionalValue, let value2 = aOptionalValue2 else {
     return false
 }
 
-guard let value = aOptionalValue, let value2 = aOptionalValue2 
-else {
+guard let value = aOptionalValue, 
+      let value2 = aOptionalValue2 else {
     return false
 }
-
-guard let value = aOptionalValue, let value2 = aOptionalValue2 
-else { return false }
-
-guard let value = aOptionalValue, 
-      let value2 = aOptionalValue2 
-else {
-    return false
-}
-
-guard let value = aOptionalValue, 
-      let value2 = aOptionalValue2 
-else { return false }
 
 guard let mountedVolumes = FileManager.default.mountedVolumeURLs(
     includingResourceValuesForKeys: [],
@@ -849,10 +835,24 @@ guard let mountedVolumes = FileManager.default.mountedVolumeURLs(
 
 ```swift
 // ❌
-guard let value = aOptionalValue, 
-      let value2 = aOptionalValue2 else {
+guard let value = aOptionalValue, let value2 = aOptionalValue2 
+else {
     return false
 }
+
+guard let value = aOptionalValue, let value2 = aOptionalValue2 
+else { return false }
+
+guard let value = aOptionalValue, 
+      let value2 = aOptionalValue2 
+else
+{
+    return false
+}
+
+guard let value = aOptionalValue, 
+      let value2 = aOptionalValue2 
+else { return false }
 ```
 
 - `if`、`guard`、`while` 或 `switch` 关键字后面的顶层表达式**不需要**使用括号。
@@ -3350,8 +3350,7 @@ func computeFFT(
 // ✅
 guard let number1 = number1,
       let number2 = number2,
-      let number3 = number3 
-else {
+      let number3 = number3 else {
     fatalError("impossible")
 }
 // do something with numbers
