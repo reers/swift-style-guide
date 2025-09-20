@@ -808,8 +808,7 @@ else {
 ```
 
 - `guard` `else` 场景中:
-  - 如果 condition 换行了, 那 `else` 也要换行, 不允许放在最后一个 condition 同一行.
-  - `else` 在任何场景下都不单独一行, 如果 condition 换行了, 那 `else` 也不换行, 与最后一个 condition 同一行, 或与最后一个 condition 的尾括号同一行
+  - `else` 在任何场景下都 **不要** 单独一行, 如果 condition 换行了, 那 `else` 也不换行, 与最后一个 condition 同一行, 或与最后一个 condition 的尾括号同一行
   - `else` 在任何场景下都要和 `{` 在同一行
   - `else` 块中如果只有一条语句, 可以单行实现
 
